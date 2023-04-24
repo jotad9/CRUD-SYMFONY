@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Alimentos{% endblock %}
+
+{% block body %}
+
+    <h1>EDITAR ALIMENTO</h1>
+
+    {{ include('ali/_form.html.twig', {'button_label': 'Update'}) }}
+
+
+    <a href="{{ path('app_ali_index') }}">Atrás</a>
+
+    {{ include('ali/_delete_form.html.twig') }}
+{% endblock %}

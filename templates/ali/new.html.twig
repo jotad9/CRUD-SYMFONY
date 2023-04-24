@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Alimentos{% endblock %}
+
+{% block body %}
+    <h1>Crear nuevo alimento</h1>
+
+    {{ include('ali/_form.html.twig') }}
+
+    <a href="{{ path('app_ali_index') }}">Atrás</a>
+{% endblock %}
