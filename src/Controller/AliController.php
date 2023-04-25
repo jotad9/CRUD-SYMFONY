@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @Route("/ali")
@@ -26,30 +27,42 @@ class AliController extends AbstractController
 
     public function index(EntityManagerInterface $entityManager, Request $request): Response
     {
-        /*
-         * con esto hago el boton buscar
-         * cuando le doy a buscar se mete en el if
-         * y busca con el id
-         * si se le da al boton refrescar se mete en el else
-         */
-        $id = (int) $request->get('buscador');
+        // Obtengo el término de búsqueda enviado desde el formulario
+        $busqueda = $request->get('buscador');
         if ($request->request->has('buscar')) {
-            $alimentos = $entityManager
-                ->getRepository(Alimentos::class)
-                ->find($id);
-            return $this->render('ali/index.html.twig', [
-                'alimentos' => [$alimentos],
-            ]);
-
+            // Si se ha enviado el formulario, realizo la búsqueda
+            $alimento = null;
+            // Si el término de búsqueda es un número, busco por ID
+            if (is_numeric($busqueda)) {
+                $alimento = $entityManager
+                    ->getRepository(Alimentos::class)
+                    ->find($busqueda);
+            } else {
+                // Si el término de búsqueda no es un número, busco por nombre
+                $alimento = $entityManager
+                    ->getRepository(Alimentos::class)
+                    ->findOneBy(['nombre' => $busqueda]);
+            }
+            // Si se ha encontrado un alimento, lo muestro en la vista
+            if ($alimento) {
+                return $this->render('ali/index.html.twig', [
+                    'alimentos' => [$alimento],
+                ]);
+            } else {
+                // Si no se ha encontrado ningún alimento, muestra un mensaje en la vista
+                return $this->render('ali/index.html.twig', [
+                    'alimentos' => [],
+                ]);
+            }
         } else {
+            // Si no se ha enviado el formulario, se muestra todos los alimentos en la vista
             $alimentos = $entityManager
                 ->getRepository(Alimentos::class)
                 ->findAll();
             return $this->render('ali/index.html.twig', [
-                'alimentos' => $alimentos ,
+                'alimentos' => $alimentos,
             ]);
         }
-
     }
     /**
      * @Route("/new", name="app_ali_new", methods={"GET", "POST"})
