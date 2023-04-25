@@ -6,7 +6,69 @@
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
         {% block stylesheets %}
-            <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
+            <style>
+                body{
+                    margin:0;
+                    background:lightcyan;
+                    background-size: cover;
+                    background-position: center;
+                    font-family: "Times New Roman", serif;
+
+                }
+                form{
+                    width: 50%;
+                    margin: auto;
+                    background: rgba(0,0,0,0.4);
+                    padding: 10px 20px;
+                    box-sizing: border-box;
+                    border-radius: 20px;
+
+                }
+                table{
+                    background-color: white;
+                    border-collapse: collapse;
+                    text-align: left;
+                    width: 50%;
+                    margin-bottom: 0.6%;
+                }
+                thead{
+                    text-align: center;
+                    background-color:#C9C9C9;
+                    border-bottom: solid 1px black;
+                    color: white;
+                }
+
+                th, td{
+                    text-align: center;
+                }
+                #tablaShow{
+                    width: 20%;
+                }
+
+                #boton{
+                    background: white;
+                    color: black;
+                    padding: 5px;
+                    margin: 1%;
+                }
+                #boton:hover{
+                    cursor: pointer;
+                }
+                #contenedor-basura{
+                    margin-left: 5px;
+                    color: red;
+                }
+                #contenedor-ver{
+                    margin-right: 5px;
+                    color: #5eb5e0;
+                }
+                #contenedor-editar{
+                    margin-left: 6px;
+                    margin-right: 5px;
+                    color: black;
+                }
+            </style>
+
         {% endblock %}
 
         {% block javascripts %}

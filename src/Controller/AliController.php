@@ -30,8 +30,10 @@ class AliController extends AbstractController
         // Obtengo el término de búsqueda enviado desde el formulario
         $busqueda = $request->get('buscador');
         if ($request->request->has('buscar')) {
+
             // Si se ha enviado el formulario, realizo la búsqueda
             $alimento = null;
+
             // Si el término de búsqueda es un número, busco por ID
             if (is_numeric($busqueda)) {
                 $alimento = $entityManager
@@ -129,7 +131,7 @@ class AliController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_ali_delete", methods={"POST"})
+     * @Route("/{id}/borrar", name="app_ali_delete", methods={"POST"})
      * @param Request $request
      * @param Alimentos $alimento
      * @param EntityManagerInterface $entityManager
