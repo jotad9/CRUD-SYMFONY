@@ -27,6 +27,10 @@ class AliController extends AbstractController
      */
     public function index(EntityManagerInterface $entityManager, Request $request): Response
     {
+        /*
+         * con esto hago el boton buscar
+         * si no encuentra nada en el id se mete en el else
+         */
         $id = (int) $request->get('buscador');
         if ($request->request->has('buscar')) {
             $alimentos = $entityManager
