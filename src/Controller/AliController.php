@@ -28,7 +28,9 @@ class AliController extends AbstractController
     {
         /*
          * con esto hago el boton buscar
-         * si no encuentra nada en el id se mete en el else
+         * cuando le doy a buscar se mete en el if
+         * y busca con el id
+         * si se le da al boton refrescar se mete en el else
          */
         $id = (int) $request->get('buscador');
         if ($request->request->has('buscar')) {
