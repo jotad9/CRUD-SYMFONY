@@ -19,12 +19,11 @@ class AliController extends AbstractController
 
     /**
      * @Route("/", name="app_ali_index", methods={"GET","POST"})
-     */
-    /**
      * @param EntityManagerInterface $entityManager
      * @param Request $request
      * @return Response
      */
+
     public function index(EntityManagerInterface $entityManager, Request $request): Response
     {
         /*
@@ -52,12 +51,11 @@ class AliController extends AbstractController
     }
     /**
      * @Route("/new", name="app_ali_new", methods={"GET", "POST"})
-     */
-    /**
      * @param Request $request
      * @param EntityManagerInterface $entityManager
      * @return Response
      */
+
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $alimento = new Alimentos();
@@ -79,11 +77,10 @@ class AliController extends AbstractController
 
     /**
      * @Route("/{id}", name="app_ali_show", methods={"GET"})
-     */
-    /**
      * @param Alimentos $alimento
      * @return Response
      */
+
     public function show(Alimentos $alimento): Response
     {
         return $this->render('ali/show.html.twig', [
@@ -93,13 +90,12 @@ class AliController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="app_ali_edit", methods={"GET", "POST"})
-     */
-    /**
      * @param Request $request
      * @param Alimentos $alimento
      * @param EntityManagerInterface $entityManager
      * @return Response
      */
+
     public function edit(Request $request, Alimentos $alimento, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(Alimentos1Type::class, $alimento);
@@ -119,13 +115,12 @@ class AliController extends AbstractController
 
     /**
      * @Route("/{id}", name="app_ali_delete", methods={"POST"})
-     */
-    /**
      * @param Request $request
      * @param Alimentos $alimento
      * @param EntityManagerInterface $entityManager
      * @return Response
      */
+
     public function delete(Request $request, Alimentos $alimento, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$alimento->getId(), $request->request->get('_token'))) {
